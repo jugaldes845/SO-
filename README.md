@@ -4,14 +4,32 @@ Comandos Utiles
 Comandos Básicos de Ubuntu:
 
 sudo apt update: Actualiza la lista de paquetes disponibles en los repositorios.
+
+
 sudo apt upgrade: Actualiza los paquetes instalados en el sistema.
+
+
 sudo apt install apache2: Instala el servidor web Apache en el sistema.
+
+
 cd /var/www/html: Cambia el directorio actual al directorio de contenido web de Apache.
+
+
 ls: Lista los archivos y directorios en el directorio actual.
+
+
 sudo rm index.html: Elimina el archivo index.html en el directorio web de Apache.
+
+
 sudo nano index.html: Abre el archivo index.html en el editor de texto Nano.
+
+
 sudo chmod 777 -R: Otorga permisos de lectura, escritura y ejecución a todos los usuarios en todos los archivos y directorios.
+
+
 mkdir prueba: Crea un nuevo directorio llamado "prueba".
+
+
 Comandos de Docker:
 
 sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common: Instala paquetes necesarios para manejar fuentes de software seguras.
