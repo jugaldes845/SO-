@@ -26,6 +26,7 @@
 | ...                                     | ...                                              | ...                                       |
 | `docker rmi mi_contenedor_personalizado` | Elimina la imagen de Docker.                   | `docker rmi mi_contenedor_personalizado` |
 | ...                                     | ...                                              | ...                                       |
+
 ## Manjaro Linux
 | Comando | Descripción | Ejemplo de Uso |
 |---------|-------------|----------------|
@@ -65,23 +66,23 @@
 | `sudo apt-get install package-name` | Instalar un paquete específico | `sudo apt-get install vlc` |
 | `sudo apt-get remove package-name` | Desinstalar un paquete específico | `sudo apt-get remove libreoffice` |
 
-# Comandos Útiles
+
+## Comandos Útiles Gracias a Mortasoft por Compartirlos
 
 A continuación, encontrarás una lista de scripts y comandos útiles que pueden ser de utilidad para diversas tareas en sistemas Linux.
 
-| Comando y Descripción                                           | Ejemplo de Uso                                               |
-|-------------------------------------------------------------------|--------------------------------------------------------------|
-| **Resetear el password de Root**                                 |                                                              |
-| ```bash```                                                        |                                                              |
-| 1: Reiniciar el equipo                                           |                                                              |
-| 2: Abrir el GRUB y seleccionar "Opciones Avanzadas"              |                                                              |
-| 3: Presionar 'e'                                                 |                                                              |
-| 4: Buscar la línea que inicia con 'ro' y cambielo a 'rw'         |                                                              |
-| 5: Agregue init=/bin/bash al final de la línea                  |                                                              |
-| 6: Presione F10                                                  |                                                              |
-| 7: Monte su sistema de archivos con el comando mount -n -o remount,rw / |                                                        |
-| 8: Resetea la contraseña con passwd root                         |                                                              |
-| 9: Digite exec /sbin/init para salir                             |                                                              |
+### Resetear el password de Root
+
+```bash
+1. Reiniciar el equipo
+2. Abrir el GRUB y seleccionar "Opciones Avanzadas"
+3. Presionar 'e'
+4. Buscar la línea que inicia con 'ro' y cambielo a 'rw'
+5. Agregue init=/bin/bash al final de la línea
+6. Presione F10
+7. Monte su sistema de archivos con el comando mount -n -o remount,rw /
+8. Resetea la contraseña con passwd root
+9. Digite exec /sbin/init para salir
 
 **Lista los discos duros y sus particiones**                       
 ```lsblk```                                                       
