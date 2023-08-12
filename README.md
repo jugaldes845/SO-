@@ -82,42 +82,154 @@ A continuación, encontrarás una lista de scripts y comandos útiles que pueden
 | 7: Monte su sistema de archivos con el comando mount -n -o remount,rw / |                                                        |
 | 8: Resetea la contraseña con passwd root                         |                                                              |
 | 9: Digite exec /sbin/init para salir                             |                                                              |
-|                                                                   |                                                              |
-| **Lista los discos duros y sus particiones**                     | ```lsblk```                                                  |
-| **Grabar la pantalla desde la terminal**                         | ```sudo apt-get install libav-tools```<br>```avconv -f x11grab -s 1024x768 -r 25 -i :0.0 -qscale 0 screen.mp4``` |
-| **Desbloquear con BlueTooth**                                     | ```sudo apt-get install blueproximity```                    |
-| **Crear un Servidor multimedia DLNA**                            | ```sudo apt-get install mediatomb```                        |
-| **Obtener la fecha de instalación del sistema**                 | ```ls -lct /etc | tail -1 | awk '{print $6, $7, $8}'``` |
-| **Respaldar Paquetes instalados**                                | ```dpkg --get-selections > listadepaquetesdebinstalados```<br>```dpkg --set-selections < listadepaquetesdebinstalados```<br>```apt-get update```<br>```apt-get dselect-upgrade```<br>```apt-get dist-upgrade``` |
-| **Recuperar discos duros dañados**                               | ```badblocks -s -v -n -f /dev/sdb```<br>```sudo ntfsfix /dev/sdXY``` |
-| **Monitorear el ancho de banda**                                 | ```sudo apt-get install bmon```<br>```sudo apt-get install nethogs```<br>```sudo wondershaper eth0 1024 512``` |
-| **Convertir video de .flv a .avi (XViD)**                        | ```sudo apt install ffmpeg```<br>```ffmpeg -i video.flv -c:v mpeg4 -vtag xvid video.avi``` |
-| **Convertir de TIFF a PDF**                                      | ```sudo apt-get install ghostscript libtiff-tools```<br>```tiff2pdf -o salida.pdf archivo.TIF``` |
-| **Convertir video a GIF**                                        | ```ffmpeg -t 5 -ss 00:00:10 -i VIDEO SALIDA.gif```           |
-| **Convertir de MKV a MP4**                                       | ```ffmpeg -i input.mkv -codec copy output.mp4```            |
-| **Dividir un video en un intervalo determinado**                 | ```ffmpeg -i archivo.mp4 -s 0 -t 600 first-10-min.mp4```    |
-| **Muestra los archivos duplicados**                              | ```fdupes -r /home/usuario```<br>```fdupes -d /home/$USER/Desktop/tecmint``` |
-| **Parches a archivos de texto**                                  | **Crear:**<br>```diff -u archivo.antiguo archivo.nuevo >archivo.patch```<br>**Aplicar:**<br>```patch -p0 archivo.viejo <archivo.patch``` |
-| **Monta una carpeta remota por SSH**                             | ```sudo apt-get install sshfs```<br>```sshfs user@www.dominio.com:/home/user /mnt/carpeta```<br>```sudo modprobe fuse```<br>```ssh-keygen en cliente```<br>```ssh-copy-id -i $HOME/.ssh/id_rsa.pub usuario@servidor``` |
-| **Desproteger PDF**                                              | ```qpdf --decrypt protected.pdf unprotected.pdf```<br>```qpdf --decrypt --password prueba1234 protected.pdf unprotected.pdf``` |
-| **Sustituir caracteres por otro en un documento masivamente**   | **Reemplaza la palabra paco por Francisco:**<br>```sed -i 's/paco/Francisco/g' *.txt``` |
-| **Unir PDF**                                                     | **Unir:**<br>```pdfunite ejemplo2.pdf ejemplo3.pdf ejemplo4.pdf ejemplo5.pdf resultado.pdf```<br>**Separar:**<br>**Separa un pdf en archivos diferentes:**<br>```pdfseparate -f 2 -l 32 documento.pdf resultado_%d.pdf``` |
-| **Convertir PDF a JPG**                                          | **Convertir:**<br>```convert -verbose -density 300 -trim -quality 100 -flatten -sharpen 0x1.0 archivo.pdf salida.jpg```<br>**Script para hacerlo masivo:**<br>```/bin/bash```<br>```for file in *.pdf;do```<br>```    convert -verbose -density 300 -trim -quality 100 -flatten -sharpen 0x1.0 $file $file.jpg```<br>```done``` |
-| **Crear archivo aleatorio**                                      | **En este caso se utiliza /dev/urandom como fuente de entropía,**<br>**la cual se volcará en el archivo de pruebas llamado archivo.bin.**<br>**En este ejemplo se quiso generar un archivo con un tamaño de 256 MB**<br>**y como /dev/urandom tiene una salida de 512 bytes se utiliza la opción count=500000:**<br>```dd if=/dev/urandom of=archivo.bin count=500000``` |
-| **Ejecutar un script desde internet**                            | ```wget -q -O - https://raw.githubusercontent.com/mortasoft/scripts/master/13.%20Crear%20Ventanas.sh | bash /dev/stdin``` |
-| **Imagen a Texto**                                               | **Fuente:** [http://geekland.eu/extraer-texto-imagen-con-ocrfeeder/](http://geekland.eu/extraer-texto-imagen-con-ocrfeeder/) |
-| **Buscar texto**                                                 | ```grep -r "mydomain.com" /etc/apache2/```                 |
-| **Buscar archivo y quitar los mensajes de error**                | ```find / -name foo 2>/dev/null```                         |
-| **Reiniciar Cinnamon**                                           | ```killall -HUP cinnamon-session```                        |
-| **Respaldo RSYNC**                                               | ```rsync -r -t -v --progress -s mortasoft@koala:/datos/Soporte /home/mortasoft/Koala``` |
-| **Flush Rules**                                                  | ```iptables -F```<br>```iptables -X```<br>```iptables -Z```<br>```iptables -t nat -F``` |
-| **Listar Archivos de una carpeta a un archivo**                  | ```for f in *;do echo $f>>archivo.txt;done```             |
-| **Docker**                                                       | ```sudo usermod -aG docker $(whoami)```<br>```docker pull ubuntu```<br>```docker run ubuntu```<br>**Da un shell interactivo:**<br>```docker run -it ubuntu```<br>```docker commit -m "Primera Imagen" -a "mortasoft" 7100a984f6f7 mortasoft/ubuntu1```<br>```docker stop container-id``` |
-| **Ataque DDOS**                                                  | ```sudo hping3 192.232.217.2 --flood -V```                |
-| **Disable Cups Service**                                         | ```sudo systemctl disable cups.service```                  |
-| **Importar certificado OpenVPN en Kubuntu**                      | ```sudo nmcli connection import type openvpn file Zenbook.ovpn``` |
-| **Instalar Megasync en Kali Linux**                              | **Descargar clave:**<br>```wget --inet4-only -O- https://mega.nz/linux/repo/Debian_testing/Release.key | gpg --dearmor | sudo tee /usr/share/keyrings/megasync-archive-keyring.gpg```<br>**Agregar repositorio:**<br>```echo "deb [arch=amd64 signed-by=/usr/share/keyrings/megasync-archive-keyring.gpg] https://mega.nz/linux/repo/Debian_testing ./" | sudo tee /etc/apt/sources.list.d/megasync.list```<br>```sudo apt update && sudo apt -y full-upgrade && sudo apt autoremove```<br>```sudo apt install megasync```<br>```sudo apt install nautilus-megasync``` |
-| **Kali Linux Multiple Eth Adapters**                            | **Editar el archivo /etc/network/interfaces:**<br>```sudo nano /etc/network/interfaces```<br>**Agregar las siguientes líneas:**<br>```# This file describes the network interfaces available on your system```<br>```# and how to activate them. For more information, see interfaces(5).```<br>```# The loopback network interface```<br>```auto lo```<br>```iface lo inet loopback```<br>```# The primary network interface```<br>```allow-hotplug eth0```<br>```iface eth0 inet dhcp```<br>```allow-hotplug eth1```<br>```iface eth1 inet dhcp``` |
-| **Actualizar repositorios en Manjaro**                           | ```sudo pacman-mirrors --fasttrack && sudo pacman -Syuu```  |
-| **Comando para tomar screenshots CEH**                          | ```flameshot screen -n 1 -c --region 1367x765+80+50```     |
-| **Comando para instalar Webmin**                                 | **Agregar repositorio y clave:**<br>```echo "deb http://download.webmin.com/download/repository sarge contrib" | sudo tee /etc/apt/sources.list.d/webmin.list```<br>```cd ~/ wget http://www.webmin.com/jcameron-key.asc sudo apt-key add jcameron-key.asc rm jcameron-key.asc```<br>```sudo apt-get update sudo apt-get install libapt-pkg-perl libnet-ssleay-perl libauthen-pam-perl libio-pty-perl apt-show-versions sudo apt-get install webmin sudo reboot``` |
+
+**Lista los discos duros y sus particiones**                       
+```lsblk```                                                       
+
+**Grabar la pantalla desde la terminal**                         
+Instala libav-tools y graba la pantalla en formato MP4.        
+```sudo apt-get install libav-tools```<br>```avconv -f x11grab -s 1024x768 -r 25 -i :0.0 -qscale 0 screen.mp4``` 
+
+**Desbloquear con BlueTooth**                                    
+Instala blueproximity para desbloquear la sesión con Bluetooth.
+```sudo apt-get install blueproximity```                    
+
+**Crear un Servidor multimedia DLNA**                            
+Instala y configura mediatomb como servidor multimedia DLNA.
+```sudo apt-get install mediatomb```                        
+
+**Obtener la fecha de instalación del sistema**                 
+Obtiene la fecha de instalación del sistema Linux.
+```ls -lct /etc | tail -1 | awk '{print $6, $7, $8}'```  
+
+**Respaldar Paquetes instalados**                                
+Realiza un respaldo de los paquetes instalados y los restaura.
+```dpkg --get-selections > listadepaquetesdebinstalados```<br>```dpkg --set-selections < listadepaquetesdebinstalados```<br>```apt-get update```<br>```apt-get dselect-upgrade```<br>```apt-get dist-upgrade``` 
+
+**Recuperar discos duros dañados**                               
+Verifica y repara sectores defectuosos en discos duros.
+```badblocks -s -v -n -f /dev/sdb```<br>```sudo ntfsfix /dev/sdXY``` 
+
+**Monitorear el ancho de banda**                                 
+Instala bmon, nethogs y wondershaper para monitorear y limitar el ancho de banda.
+```sudo apt-get install bmon```<br>```sudo apt-get install nethogs```<br>```sudo wondershaper eth0 1024 512``` 
+
+**Convertir video de .flv a .avi (XViD)**                        
+Instala ffmpeg y convierte archivos de video de FLV a AVI con XViD.
+```sudo apt install ffmpeg```<br>```ffmpeg -i video.flv -c:v mpeg4 -vtag xvid video.avi``` 
+
+**Convertir de TIFF a PDF**                                      
+Instala ghostscript y libtiff-tools para convertir archivos de imagen TIFF a PDF.
+```sudo apt-get install ghostscript libtiff-tools```<br>```tiff2pdf -o salida.pdf archivo.TIF``` 
+
+**Convertir video a GIF**                                        
+Convierte un segmento de video a formato GIF.
+```ffmpeg -t 5 -ss 00:00:10 -i VIDEO SALIDA.gif```           
+
+**Convertir de MKV a MP4**                                       
+Convierte archivos de video de MKV a MP4.
+```ffmpeg -i input.mkv -codec copy output.mp4```            
+
+**Dividir un video en un intervalo determinado**                 
+Divide un archivo de video en un intervalo de tiempo específico.
+```ffmpeg -i archivo.mp4 -s 0 -t 600 first-10-min.mp4```    
+
+**Muestra los archivos duplicados**                              
+Busca y muestra archivos duplicados en una carpeta.
+```fdupes -r /home/usuario```<br>```fdupes -d /home/$USER/Desktop/tecmint``` 
+
+**Parches a archivos de texto**                                  
+Crea y aplica parches a archivos de texto.
+```diff -u archivo.antiguo archivo.nuevo >archivo.patch```<br>```patch -p0 archivo.viejo <archivo.patch``` 
+
+**Monta una carpeta remota por SSH**                             
+Monta una carpeta remota usando SSH y sshfs.
+```sudo apt-get install sshfs```<br>```sshfs user@www.dominio.com:/home/user /mnt/carpeta```<br>```sudo modprobe fuse```<br>```ssh-keygen en cliente```<br>```ssh-copy-id -i $HOME/.ssh/id_rsa.pub usuario@servidor``` 
+
+**Desproteger PDF**                                              
+Remueve la protección de un archivo PDF.
+```qpdf --decrypt protected.pdf unprotected.pdf```<br>```qpdf --decrypt --password prueba1234 protected.pdf unprotected.pdf``` 
+
+**Sustituir caracteres por otro en un documento masivamente**   
+Reemplaza caracteres en archivos de texto de manera masiva.
+```sed -i 's/paco/Francisco/g' *.txt``` 
+
+**Unir PDF**                                                     
+Une o separa archivos PDF según necesites.
+```pdfunite ejemplo2.pdf ejemplo3.pdf ejemplo4.pdf ejemplo5.pdf resultado.pdf```<br>```pdfseparate -f 2 -l 32 documento.pdf resultado_%d.pdf``` 
+
+**Convertir PDF a JPG**                                          
+Convierte archivos PDF a imágenes JPG.
+```convert -verbose -density 300 -trim -quality 100 -flatten -sharpen 0x1.0 archivo.pdf salida.jpg```<br>```/bin/bash```<br>```for file in *.pdf;do```<br>```    convert -verbose -density 300 -trim -quality 100 -flatten -sharpen 0x1.0 $file $file.jpg```<br>```done``` 
+
+**Crear archivo aleatorio**                                      
+Crea un archivo aleatorio con contenido generado.
+```dd if=/dev/urandom of=archivo.bin count=500000``` 
+
+**Ejecutar un script desde internet**                            
+Descarga y ejecuta un script desde internet.
+```wget -q -O - https://raw.githubusercontent.com/mortasoft/scripts/master/13.%20Crear%20Ventanas.sh | bash /dev/stdin``` 
+
+**Imagen a Texto**                                               
+Convierte el texto de imágenes a formato legible.
+[http://geekland.eu/extraer-texto-imagen-con-ocrfeeder/](http://geekland.eu/extraer-texto-imagen-con-ocrfeeder/) 
+
+**Buscar texto**                                                 
+Busca texto en archivos o directorios específicos.
+```grep -r "mydomain.com" /etc/apache2/```                 
+
+**Buscar archivo y quitar los mensajes de error**                
+Busca archivos y elimina los mensajes de error.
+```find / -name foo 2>/dev/null```                         
+
+**Reiniciar Cinnamon**                                           
+Reinicia el entorno de escritorio Cinnamon.
+```killall -HUP cinnamon-session```                        
+
+**Respaldo RSYNC**                                               
+Realiza respaldos usando el comando RSYNC.
+```rsync -r -t -v --progress -s mortasoft@koala:/datos/Soporte /home/mortasoft/Koala``` 
+
+**Flush Rules**                                                  
+Limpia todas las reglas en las tablas iptables.
+```iptables -F```<br>```iptables -X```<br>```iptables -Z```<br>```iptables -t nat -F``` 
+
+**Listar Archivos de una carpeta a un archivo**                  
+Lista los archivos de una carpeta y los guarda en un archivo.
+```for f in *;do echo $f>>archivo.txt;done```             
+
+**Docker**                                                       
+Comandos relacionados con Docker.
+```sudo usermod -aG docker $(whoami)```<br>```docker pull ubuntu```<br>```docker run ubuntu```<br>**Da un shell interactivo:**<br>```docker run -it ubuntu```<br>```docker commit -m "Primera Imagen" -a "mortasoft" 7100a984f6f7 mortasoft/ubuntu1```<br>```docker stop container-id``` 
+
+**Ataque DDOS**                                                  
+Realiza un ataque DDoS a una dirección IP especificada.
+```sudo hping3 192.232.217.2 --flood -V```                
+
+**Disable Cups Service**                                         
+Deshabilita el servicio Cups en el sistema.
+```sudo systemctl disable cups.service```                  
+
+**Importar certificado OpenVPN en Kubuntu**                      
+Importa una configuración OpenVPN en Kubuntu.
+```sudo nmcli connection import type openvpn file Zenbook.ovpn``` 
+
+**Instalar Megasync en Kali Linux**                              
+Instala Megasync y su integración con Nautilus en Kali Linux.
+**Descargar clave:**<br>```wget --inet4-only -O- https://mega.nz/linux/repo/Debian_testing/Release.key | gpg --dearmor | sudo tee /usr/share/keyrings/megasync-archive-keyring.gpg```<br>**Agregar repositorio:**<br>```echo "deb [arch=amd64 signed-by=/usr/share/keyrings/megasync-archive-keyring.gpg] https://mega.nz/linux/repo/Debian_testing ./" | sudo tee /etc/apt/sources.list.d/megasync.list```<br>```sudo apt update && sudo apt -y full-upgrade && sudo apt autoremove```<br>```sudo apt install megasync```<br>```sudo apt install nautilus-megasync``` 
+
+**Kali Linux Multiple Eth Adapters**                            
+Configura múltiples adaptadores de red en Kali Linux.
+**Editar el archivo /etc/network/interfaces:**<br>```sudo nano /etc/network/interfaces```<br>**Agregar las siguientes líneas:**<br>```# This file describes the network interfaces available on your system```<br>```# and how to activate them. For more information, see interfaces(5).```<br>```# The loopback network interface```<br>```auto lo```<br>```iface lo inet loopback```<br>```# The primary network interface```<br>```allow-hotplug eth0```<br>```iface eth0 inet dhcp```<br>```allow-hotplug eth1```<br>```iface eth1 inet dhcp``` 
+
+**Actualizar repositorios en Manjaro**                           
+Actualiza los repositorios y el sistema en Manjaro.
+```sudo pacman-mirrors --fasttrack && sudo pacman -Syuu```  
+
+**Comando para tomar screenshots CEH**                          
+Instala Flameshot y toma capturas de pantalla.
+```flameshot screen -n 1 -c --region 1367x765+80+50```     
+
+**Comando para instalar Webmin**                                 
+Instala Webmin, una herramienta de administración web.
+**Agregar repositorio y clave:**<br>```echo "deb http://download.webmin.com/download/repository sarge contrib" | sudo tee /etc/apt/sources.list.d/webmin.list```<br>```cd ~/ wget http://www.webmin.com/jcameron-key.asc sudo apt-key add jcameron-key.asc rm jcameron-key.asc```<br>```sudo apt-get update sudo apt-get install libapt-pkg-perl libnet-ssleay-perl libauthen-pam-perl libio-pty-perl apt-show-versions sudo apt-get install webmin sudo reboot``` 
