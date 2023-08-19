@@ -66,15 +66,16 @@
 | `sudo apt-get install package-name` | Instalar un paquete específico | `sudo apt-get install vlc` |
 | `sudo apt-get remove package-name` | Desinstalar un paquete específico | `sudo apt-get remove libreoffice` |
 
-# Inventario de Relaciones
+## Inventario de Relaciones
 
-| Supuesto | Nombre      | Tipo   | Intensión                                               | Extensión                                                | Obligatorio | Pertenece a                  |
-|----------|-------------|--------|---------------------------------------------------------|----------------------------------------------------------|-------------|------------------------------|
-| 2        | Proveedor   | Fuerte | Proveer todas las compras al supermercado              | Información del proveedor, Contacto del proveedor, Categoría del producto, Cuenta bancaria, Estado del proveedor, Fecha de inicio de relación | Sí          | Compra, Movimiento, Inventario |
-| 9        | Compra      | Fuerte | Permitir a los administradores rastrear fácilmente las compras | ID de compra, Fecha de compra, ID de proveedor, Total de compra, Método de pago, Estado de compra, Factura, Fecha de entrega, Observación, Detalles de productos comprados | Sí          | Inventario, Movimiento        |
-| 17       | Inventario  | Fuerte | Registrar los productos en el sistema                  | Código del inventario, Lote del pedido, Descripción del producto, Cantidad, Precio unitario, Fecha de vencimiento, Ubicación, Detalles de la compra asociada | Sí          | Bodega, Compra                |
-| 27       | Movimiento  | Débil  | Generar un reporte para todos los movimientos           | ID de movimiento, Código del inventario, Lote del pedido, Tipo de movimiento, Fechas (Salida, Entrada, Devolución), Destino, Existencia, Proveedor, Responsable, Estado, Motivo | No          | Compra, Inventario             |
-| 38       | Bodega      | Débil  | Un lugar para guardar las mercaderías del supermercado | ID de bodega, Nombre, Tipo de bodega, Responsable, Código de barras, Regulaciones, Historial de reabastecimientos, Fecha de vencimiento, Rotación de inventario, Registro de salidas, Registro de devoluciones, Nivel de stock mínimo | Sí          | Inventario                   |
+| Supuesto | Nombre           | Tipo        | Intensión                                         | Extensión                                          | Obligatorio | Pertenece a    |
+|----------|------------------|-------------|---------------------------------------------------|----------------------------------------------------|-------------|----------------|
+| 2        | Proveedor        | Fuerte      | Proveer todas las compras al supermercado.       | Información del proveedor, contacto y categoría.  | Sí          | Compra, Movimiento |
+| 9        | Compra           | Fuerte      | Permitir a los administradores rastrear fácilmente las compras. | Detalles de la compra, ID del proveedor.      | Sí          | Proveedor      |
+| 17       | Inventario       | Fuerte      | Registrar los productos en el sistema.           | Detalles del producto, cantidad y precio.         | Sí          | Bodega         |
+| 27       | Movimiento       | Débil       | Generar un reporte para todos los movimientos.    | Tipos de movimientos y fechas de entrada/salida. | No          | Inventario, Bodega |
+| 38       | Bodega           | Débil       | Un lugar para guardar las mercaderías del supermercado. | Detalles de la bodega y su ubicación.        | Sí          | Movimiento, Compra |
+
 
 
 ## Comandos Útiles Gracias a Mortasoft por Compartirlos
