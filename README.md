@@ -234,3 +234,36 @@ Instala Flameshot y toma capturas de pantalla.
 **Comando para instalar Webmin**                                 
 Instala Webmin, una herramienta de administración web.
 **Agregar repositorio y clave:**<br>```echo "deb http://download.webmin.com/download/repository sarge contrib" | sudo tee /etc/apt/sources.list.d/webmin.list```<br>```cd ~/ wget http://www.webmin.com/jcameron-key.asc sudo apt-key add jcameron-key.asc rm jcameron-key.asc```<br>```sudo apt-get update sudo apt-get install libapt-pkg-perl libnet-ssleay-perl libauthen-pam-perl libio-pty-perl apt-show-versions sudo apt-get install webmin sudo reboot``` 
+
+
+# Inventario de Relaciones
+
+| Supuesto | Nombre            | Tipo        | Intension | Extension | Obligatorio | Pertenece a |
+|----------|-------------------|-------------|-----------|-----------|-------------|-------------|
+| 2        | Proveedor         | Fuerte      | Proveer todas las compras al supermercado. | - | Sí | - |
+|          |                   |             | Un ID del proveedor único para simplificar la identificación del proveedor en los sistemas y registros del supermercado. | Incremento automático de ID. | Sí | - |
+|          |                   |             | El nombre del proveedor se utiliza para registrar el nombre del proveedor del producto, con primera mayúscula. | - | Sí | - |
+|          |                   |             | El contacto del proveedor se guarda como número de comunicación, solo numérico. | - | Sí | - |
+|          |                   |             | Se registra la categoría del producto del supermercado con primera letra mayúscula. | - | Sí | - |
+|          |                   |             | Se registra la cuenta bancaria de cada proveedor del producto. | Única, numérica y de caracteres. | Sí | - |
+|          |                   |             | Se requiere una función para saber el proveedor activo o inactivo. | - | Sí | - |
+|          |                   |             | Se registra la fecha de inicio de la relación con el proveedor. | - | Sí | - |
+| 9        | Compra            | Fuerte      | Permitir a los administradores rastrear fácilmente las compras. | - | Sí | - |
+|          |                   |             | El ID de compra identifica de manera única una compra. | Incremento automático de ID. | Sí | - |
+|          |                   |             | Se registra la fecha de compra en tiempo real (mes, día y año). | - | Sí | - |
+|          |                   |             | ID proveedor: Al momento de la compra, se debe mostrar el ID del proveedor que proporciona el producto para cada compra. | - | Sí | - |
+|          |                   |             | Se registra el total de compra de un proveedor dado. | - | Sí | - |
+|          |                   |             | Se debe registrar un método de pago para pagar las compras. | Efectivo, cheque, transferencia, tarjeta de crédito/débito. | Sí | - |
+|          |                   |             | Se necesita una forma de conocer el estado de cada compra. Los estados de compra son: procesado, cancelado y pendiente. | - | Sí | - |
+|          |                   |             | Es importante registrar la fecha de entrega de cada pedido comprado por cada proveedor. | - | Sí | - |
+|          |                   |             | Todas las compras se registran en el inventario con las detalles de cada producto que ha comprado. | - | Sí | - |
+|          |                   |             | Cada compra, se registra una pequeña reseña para obtener más información sobre el pedido o bien se puede dejar en blanco. | - | No | - |
+| 17       | Inventario        | Fuerte      | Registrar los productos en el sistema. | - | Sí | - |
+|          |                   |             | Se necesita un código del inventario para cada inventario que va a registrar el administrador de bodega, el código de inventario se incrementa automáticamente. | Incremento automático de código. | Sí | - |
+|          |                   |             | En cada registro de inventario se necesita ingresar el lote del pedido para facilitar la búsqueda del producto. | - | Sí | - |
+|          |                   |             | Es importante registrar la descripción del producto, el producto no permite registrar sin descripción. | - | Sí | - |
+|          |                   |             | Es necesario ingresar la cantidad de cada producto que va a entrar a la bodega del supermercado. Todos los productos se manejan con unidades, excepto decimales. | - | Sí | - |
+|          |                   |             | Es obligado registrar el precio de cada producto que comprado del supermercado, el precio se maneja con decimales. Cada inventario se genera uno o muchos movimientos. | - | Sí | - |
+|          |                   |             | El control de la fecha de vencimiento es sumamente importante para manejar los productos del supermercado, se debe registrar el vencimiento exacto de cada producto. | - | Sí | - |
+|          |                   |             | La ubicación del producto es necesaria para guardar los productos en la bodega. Al conocer la ubicación exacta de un producto, los empleados pueden acceder a él de manera más rápida y eficiente. | - | Sí | - |
+|          |                   |             | Un identificador para asignar a una bodega específica para distinguirla de
