@@ -66,17 +66,6 @@
 | `sudo apt-get install package-name` | Instalar un paquete específico | `sudo apt-get install vlc` |
 | `sudo apt-get remove package-name` | Desinstalar un paquete específico | `sudo apt-get remove libreoffice` |
 
-## Inventario de Relaciones
-
-| Supuesto | Nombre           | Tipo        | Intensión                                         | Extensión                                          | Obligatorio | Pertenece a    |
-|----------|------------------|-------------|---------------------------------------------------|----------------------------------------------------|-------------|----------------|
-| 2        | Proveedor        | Fuerte      | Proveer todas las compras al supermercado.       | Información del proveedor, contacto y categoría.  | Sí          | Compra, Movimiento |
-| 9        | Compra           | Fuerte      | Permitir a los administradores rastrear fácilmente las compras. | Detalles de la compra, ID del proveedor.      | Sí          | Proveedor      |
-| 17       | Inventario       | Fuerte      | Registrar los productos en el sistema.           | Detalles del producto, cantidad y precio.         | Sí          | Bodega         |
-| 27       | Movimiento       | Débil       | Generar un reporte para todos los movimientos.    | Tipos de movimientos y fechas de entrada/salida. | No          | Inventario, Bodega |
-| 38       | Bodega           | Débil       | Un lugar para guardar las mercaderías del supermercado. | Detalles de la bodega y su ubicación.        | Sí          | Movimiento, Compra |
-
-
 
 ## Comandos Útiles Gracias a Mortasoft por Compartirlos
 
